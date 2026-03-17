@@ -52,11 +52,11 @@ const Project: React.FC = () => {
     : projects.filter(project => project.featured);
 
   return (
-    <section id="projects" className="py-20 px-4 relative overflow-hidden">
+    <section id="projects" className="section-padding relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-transparent to-purple-900/10 pointer-events-none" />
       
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="container-responsive relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -66,13 +66,13 @@ const Project: React.FC = () => {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
           >
             <span className="gradient-text">Projects</span>
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="text-xl text-gray-400 max-w-2xl mx-auto mb-8"
+            className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-6 sm:mb-8"
           >
             A selection of my recent work and personal projects.
           </motion.p>
@@ -80,11 +80,11 @@ const Project: React.FC = () => {
           {/* Filter Buttons */}
           <motion.div
             variants={itemVariants}
-            className="flex justify-center gap-4 mb-12"
+            className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-8 sm:mb-12"
           >
             <button
               onClick={() => setFilter('all')}
-              className={`px-6 py-2 rounded-full transition-all duration-300 ${
+              className={`px-4 py-2 sm:px-6 sm:py-2 rounded-full transition-all duration-300 text-sm sm:text-base ${
                 filter === 'all'
                   ? 'btn-primary'
                   : 'btn-secondary'
@@ -94,7 +94,7 @@ const Project: React.FC = () => {
             </button>
             <button
               onClick={() => setFilter('featured')}
-              className={`px-6 py-2 rounded-full transition-all duration-300 ${
+              className={`px-4 py-2 sm:px-6 sm:py-2 rounded-full transition-all duration-300 text-sm sm:text-base ${
                 filter === 'featured'
                   ? 'btn-primary'
                   : 'btn-secondary'
@@ -110,7 +110,7 @@ const Project: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
         >
           {filteredProjects.map((project, index) => (
             <motion.div
@@ -120,7 +120,7 @@ const Project: React.FC = () => {
               className="glass-effect rounded-2xl overflow-hidden group"
             >
               {/* Project Image */}
-              <div className="relative overflow-hidden h-48">
+              <div className="relative overflow-hidden h-40 sm:h-48">
                 <img
                   src={project.imageUrl}
                   alt={project.title}
@@ -135,39 +135,39 @@ const Project: React.FC = () => {
               </div>
 
               {/* Project Content */}
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-white">
+              <div className="p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-bold mb-2 text-white">
                   {project.title}
                 </h3>
                 
-                <p className="text-gray-400 mb-4 line-clamp-3">
+                <p className="text-gray-400 mb-3 sm:mb-4 line-clamp-3 text-sm sm:text-base">
                   {project.description}
                 </p>
 
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-6">
                   {project.technologies.slice(0, 3).map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-lg text-xs font-medium border border-purple-500/30"
+                      className="px-2 py-1 sm:px-3 sm:py-1 bg-purple-500/20 text-purple-400 rounded-lg text-xs font-medium border border-purple-500/30"
                     >
                       {tech}
                     </span>
                   ))}
                   {project.technologies.length > 3 && (
-                    <span className="px-3 py-1 bg-gray-500/20 text-gray-400 rounded-lg text-xs font-medium border border-gray-500/30">
+                    <span className="px-2 py-1 sm:px-3 sm:py-1 bg-gray-500/20 text-gray-400 rounded-lg text-xs font-medium border border-gray-500/30">
                       +{project.technologies.length - 3}
                     </span>
                   )}
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-3">
+                <div className="flex gap-2 sm:gap-3">
                   <motion.a
                     href={project.imageUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-secondary text-sm flex-1 text-center"
+                    className="btn-secondary text-xs sm:text-sm flex-1 text-center"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -177,7 +177,7 @@ const Project: React.FC = () => {
                     href="https://github.com/PrabeshShrestha0"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-primary text-sm flex-1 text-center"
+                    className="btn-primary text-xs sm:text-sm flex-1 text-center"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -195,7 +195,7 @@ const Project: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="text-center mt-16"
+          className="text-center mt-12 sm:mt-16"
         >
           <motion.a
             href="https://github.com/PrabeshShrestha0"

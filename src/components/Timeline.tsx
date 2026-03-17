@@ -51,11 +51,11 @@ const Timeline: React.FC = () => {
   };
 
   return (
-    <section id="history" className="py-20 px-4 relative overflow-hidden bg-gradient-to-br from-slate-900/50 via-purple-900/30 to-slate-900">
+    <section id="history" className="section-padding relative overflow-hidden bg-gradient-to-br from-slate-900/50 via-purple-900/30 to-slate-900">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-transparent to-purple-900/10 pointer-events-none" />
       
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="container-responsive relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -65,13 +65,13 @@ const Timeline: React.FC = () => {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
           >
             <span className="gradient-text">Career History</span>
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="text-xl text-gray-400 max-w-2xl mx-auto"
+            className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto"
           >
             My professional journey and achievements.
           </motion.p>
@@ -80,14 +80,14 @@ const Timeline: React.FC = () => {
         {/* Timeline Container */}
         <div className="relative">
           {/* Center Timeline Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-purple-600 via-blue-600 to-green-600 opacity-60" />
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-purple-600 via-blue-600 to-green-600 opacity-60 hidden md:block" />
           
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
-            className="space-y-12 md:space-y-20"
+            className="space-y-8 sm:space-y-12 md:space-y-16 lg:space-y-20"
           >
             {timeline.map((item, index) => (
               <motion.div
@@ -98,7 +98,7 @@ const Timeline: React.FC = () => {
                 animate="visible"
                 className={`relative flex items-center justify-center ${
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                } gap-8 md:gap-12`}
+                } gap-6 sm:gap-8 md:gap-12`}
               >
                 {/* Timeline Dot - Perfectly Centered */}
                 <motion.div
@@ -135,7 +135,7 @@ const Timeline: React.FC = () => {
                 {/* Content Card */}
                 <motion.div
                   variants={itemVariants}
-                  className={`w-full md:w-5/12 lg:w-5/12 glass-effect rounded-2xl p-6 md:p-8 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
+                  className={`w-full md:w-5/12 lg:w-5/12 glass-effect rounded-2xl p-4 sm:p-6 lg:p-8 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
                     index % 2 === 0 ? 'md:mr-auto md:ml-16' : 'md:ml-auto md:mr-16'
                   }`}
                   whileHover={{ 
@@ -159,17 +159,17 @@ const Timeline: React.FC = () => {
                     </span>
                   </div>
                   
-                  <h3 className="text-2xl md:text-3xl font-bold mb-2 text-white">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 text-white">
                     {item.title}
                   </h3>
                   
-                  <h4 className={`text-lg md:text-xl mb-4 font-semibold ${
+                  <h4 className={`text-base sm:text-lg md:text-xl mb-3 sm:mb-4 font-semibold ${
                     item.type === 'work' ? 'text-green-400' : 'text-blue-400'
                   }`}>
                     {item.company}
                   </h4>
                   
-                  <p className="text-gray-300 leading-relaxed text-sm md:text-base mb-4">
+                  <p className="text-gray-300 leading-relaxed text-sm sm:text-base mb-3 sm:mb-4">
                     {item.description}
                   </p>
 

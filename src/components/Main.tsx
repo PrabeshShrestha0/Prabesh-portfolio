@@ -39,7 +39,7 @@ const Main: React.FC = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 pt-16 relative overflow-hidden">
+    <section className="section-padding min-h-screen flex items-center justify-center pt-16 sm:pt-20 relative overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-blue-900/20 pointer-events-none" />
       
@@ -47,22 +47,22 @@ const Main: React.FC = () => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="max-w-6xl mx-auto text-center relative z-10"
+        className="container-responsive text-center relative z-10"
       >
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Text Content */}
-          <motion.div variants={itemVariants} className="text-center lg:text-left space-y-6">
+          <motion.div variants={itemVariants} className="text-center lg:text-left space-y-4 sm:space-y-6">
             <motion.div variants={itemVariants} className="space-y-4">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold">
                 <span className="gradient-text">{personalInfo.name}</span>
               </h1>
               
-              <h2 className="text-2xl md:text-3xl lg:text-4xl text-gray-300 font-semibold">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-300 font-semibold">
                 {personalInfo.title}
               </h2>
               
               {personalInfo.tagline && (
-                <p className="text-xl md:text-2xl text-purple-400 font-medium">
+                <p className="text-lg sm:text-xl md:text-2xl text-purple-400 font-medium">
                   {personalInfo.tagline}
                 </p>
               )}
@@ -70,7 +70,7 @@ const Main: React.FC = () => {
             
             <motion.p 
               variants={itemVariants}
-              className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-2xl mx-auto lg:mx-0"
+              className="text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed max-w-2xl mx-auto lg:mx-0"
             >
               {personalInfo.bio}
             </motion.p>
@@ -78,7 +78,7 @@ const Main: React.FC = () => {
             {/* Social Links */}
             <motion.div 
               variants={itemVariants}
-              className="flex flex-wrap gap-4 justify-center lg:justify-start"
+              className="flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start"
             >
               {personalInfo.socialLinks.github && (
                 <motion.a
@@ -141,7 +141,7 @@ const Main: React.FC = () => {
               <motion.img
                 src={personalInfo.avatar}
                 alt={personalInfo.name}
-                className="relative w-48 h-48 lg:w-64 lg:h-64 rounded-full border-4 border-white/10 shadow-2xl object-cover"
+                className="w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64 rounded-full border-4 border-white/10 shadow-2xl object-cover"
                 whileHover={{ scale: 1.05, rotate: 5 }}
                 transition={{ duration: 0.3 }}
               />
@@ -152,12 +152,12 @@ const Main: React.FC = () => {
         {/* Scroll Indicator */}
         <motion.div
           variants={itemVariants}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-1/2 transform -translate-x-1/2"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
           <div className="flex flex-col items-center gap-2">
-            <span className="text-sm text-gray-500">Scroll Down</span>
+            <span className="text-xs sm:text-sm text-gray-500">Scroll Down</span>
             <svg className="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>

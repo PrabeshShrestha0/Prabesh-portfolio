@@ -14,11 +14,15 @@ const Navigation: React.FC<NavigationProps> = ({ theme }) => {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+      // Close mobile menu when scrolling
+      if (mobileOpen) {
+        setMobileOpen(false);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [mobileOpen]);
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -34,8 +38,14 @@ const Navigation: React.FC<NavigationProps> = ({ theme }) => {
   };
 
   const mobileMenuVariants = {
-    hidden: { x: "100%" },
-    visible: { x: 0 },
+    hidden: { 
+      opacity: 0,
+      y: -20,
+    },
+    visible: { 
+      opacity: 1,
+      y: 0,
+    },
   };
 
   return (
@@ -51,20 +61,19 @@ const Navigation: React.FC<NavigationProps> = ({ theme }) => {
             : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+        <div className="container-responsive flex items-center justify-between h-14 sm:h-16 relative">
             {/* Logo */}
             <motion.div 
               className="flex-shrink-0"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="text-2xl font-bold gradient-text">PS</span>
+              <span className="text-xl sm:text-2xl font-bold gradient-text">PS</span>
             </motion.div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
+              <div className="ml-4 sm:ml-10 flex items-baseline space-x-2 sm:space-x-4">
                 {navigationItems.map((item) => (
                   <button
                     key={item.href}
@@ -82,7 +91,7 @@ const Navigation: React.FC<NavigationProps> = ({ theme }) => {
               {/* Theme Toggle */}
               <motion.button
                 onClick={theme.toggle}
-                className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors duration-200"
+                className="btn-touch p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors duration-200"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -100,9 +109,9 @@ const Navigation: React.FC<NavigationProps> = ({ theme }) => {
               {/* Mobile menu button */}
               <motion.button
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="md:hidden p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors duration-200"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                className="btn-touch md:hidden p-2.5 rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-200 relative z-10"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   {mobileOpen ? (
@@ -114,7 +123,6 @@ const Navigation: React.FC<NavigationProps> = ({ theme }) => {
               </motion.button>
             </div>
           </div>
-        </div>
 
         {/* Mobile Navigation */}
         <motion.div
@@ -122,14 +130,14 @@ const Navigation: React.FC<NavigationProps> = ({ theme }) => {
           initial="hidden"
           animate={mobileOpen ? "visible" : "hidden"}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="md:hidden glass-effect border-t border-white/20"
+          className="absolute top-full left-0 right-0 md:hidden glass-effect border-t border-white/20 z-50"
         >
-          <div className="px-2 pt-2 pb-3 space-y-1">
+          <div className="px-4 py-4 space-y-2">
             {navigationItems.map((item) => (
               <button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className="block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-white/10 transition-colors duration-200"
+                className="block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-gray-300 hover:bg-white/10 hover:text-white transition-all duration-200"
               >
                 {item.label}
               </button>

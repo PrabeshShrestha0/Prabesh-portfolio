@@ -133,11 +133,11 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 px-4 relative overflow-hidden">
+    <section id="contact" className="section-padding relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-transparent to-blue-900/10 pointer-events-none" />
       
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="container-responsive relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -147,13 +147,13 @@ const Contact: React.FC = () => {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
           >
             <span className="gradient-text">Get In Touch</span>
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="text-xl text-gray-400 max-w-2xl mx-auto"
+            className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto"
           >
             Got a project waiting to be realized? Let's collaborate and make it happen!
           </motion.p>
@@ -164,14 +164,14 @@ const Contact: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="grid lg:grid-cols-2 gap-12 items-start"
+          className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start"
         >
           {/* Contact Information */}
           <motion.div variants={itemVariants} className="space-y-6">
-            <div className="glass-effect rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-6 gradient-text">Contact Information</h3>
+            <div className="glass-effect rounded-2xl p-4 sm:p-6 lg:p-8">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 gradient-text">Contact Information</h3>
               
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {contactInfo.map((info, index) => (
                   <motion.div
                     key={index}
@@ -182,15 +182,15 @@ const Contact: React.FC = () => {
                       href={info.href}
                       target={info.label !== 'Email' && info.label !== 'Phone' ? '_blank' : undefined}
                       rel="noopener noreferrer"
-                      className={`flex items-center gap-4 p-4 rounded-xl glass-effect hover:bg-white/10 transition-all duration-300`}
+                      className={`flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl glass-effect hover:bg-white/10 transition-all duration-300`}
                       whileHover={{ scale: 1.02, x: 5 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <div className={`w-12 h-12 bg-gradient-to-r ${info.color} rounded-lg flex items-center justify-center text-white shadow-lg group-hover:shadow-xl transition-all duration-300`}>
+                      <div className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r ${info.color} rounded-lg flex items-center justify-center text-white shadow-lg group-hover:shadow-xl transition-all duration-300`}>
                         {info.icon}
                       </div>
                       <div className="flex-1">
-                        <p className="text-sm text-gray-400 font-medium">{info.label}</p>
+                        <p className="text-xs sm:text-sm text-gray-400 font-medium">{info.label}</p>
                         <p className="text-white font-semibold hover:text-purple-400 transition-colors">
                           {info.value}
                         </p>
@@ -207,15 +207,15 @@ const Contact: React.FC = () => {
 
           {/* Contact Form */}
           <motion.div variants={itemVariants}>
-            <div className="glass-effect rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-6 gradient-text">Send Message</h3>
+            <div className="glass-effect rounded-2xl p-4 sm:p-6 lg:p-8">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 gradient-text">Send Message</h3>
               
               {/* Success/Error Messages */}
               {submitStatus === 'success' && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mb-6 p-4 bg-green-500/20 border border-green-500/50 rounded-lg text-green-400"
+                  className="mb-4 sm:mb-6 p-3 sm:p-4 bg-green-500/20 border border-green-500/50 rounded-lg text-green-400 text-sm sm:text-base"
                 >
                   ✅ Message sent successfully! I'll get back to you soon.
                 </motion.div>
@@ -225,7 +225,7 @@ const Contact: React.FC = () => {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-400"
+                  className="mb-4 sm:mb-6 p-3 sm:p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-400 text-sm sm:text-base"
                 >
                   ❌ Failed to send message. Please try again or contact me directly.
                 </motion.div>
@@ -234,10 +234,10 @@ const Contact: React.FC = () => {
               <form
                 ref={form}
                 onSubmit={handleSubmit}
-                className="space-y-6"
+                className="space-y-4 sm:space-y-6"
               >
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2 text-gray-300">
+                  <label htmlFor="name" className="block text-xs sm:text-sm font-medium mb-2 text-gray-300">
                     Your Name
                   </label>
                   <input
@@ -247,17 +247,17 @@ const Contact: React.FC = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="What's your name?"
-                    className={`w-full px-4 py-3 rounded-lg bg-white/10 border ${
+                    className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-white/10 border ${
                       nameError ? 'border-red-500' : 'border-white/20'
                     } text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all`}
                   />
                   {nameError && (
-                    <p className="text-red-400 text-sm mt-1">Please enter your name</p>
+                    <p className="text-red-400 text-xs sm:text-sm mt-1">Please enter your name</p>
                   )}
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2 text-gray-300">
+                  <label htmlFor="email" className="block text-xs sm:text-sm font-medium mb-2 text-gray-300">
                     Email
                   </label>
                   <input
@@ -267,17 +267,17 @@ const Contact: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="How can I reach you?"
-                    className={`w-full px-4 py-3 rounded-lg bg-white/10 border ${
+                    className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-white/10 border ${
                       emailError ? 'border-red-500' : 'border-white/20'
                     } text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all`}
                   />
                   {emailError && (
-                    <p className="text-red-400 text-sm mt-1">Please enter a valid email</p>
+                    <p className="text-red-400 text-xs sm:text-sm mt-1">Please enter a valid email</p>
                   )}
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2 text-gray-300">
+                  <label htmlFor="message" className="block text-xs sm:text-sm font-medium mb-2 text-gray-300">
                     Message
                   </label>
                   <textarea
@@ -287,12 +287,12 @@ const Contact: React.FC = () => {
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Send me any inquiries or questions"
                     rows={6}
-                    className={`w-full px-4 py-3 rounded-lg bg-white/10 border ${
+                    className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-white/10 border ${
                       messageError ? 'border-red-500' : 'border-white/20'
                     } text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-none`}
                   />
                   {messageError && (
-                    <p className="text-red-400 text-sm mt-1">Please enter your message</p>
+                    <p className="text-red-400 text-xs sm:text-sm mt-1">Please enter your message</p>
                   )}
                 </div>
 
